@@ -1,0 +1,51 @@
+/* Reset margin/padding and ensure full height for page layout */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Body styling with background image and default font */
+body {
+    background: url('images/frutiger-aurora-1.webp'); /* Set background image */
+    background-size: cover;        /* Scale image to cover the full screen */
+    background-repeat: no-repeat;  /* Prevent repeating the background */
+    background-position: center;   /* Center the image on the screen */
+    font-family: Arial, sans-serif; /* Use clean sans-serif font */
+}
+
+/* Heading color styling */
+h1 {
+    color: rgb(0, 0, 0); /* Black text color */
+}
+
+/* Navigation list styling - horizontal layout with spacing */
+nav ul {
+    display: flex;         /* Use flexbox to align items in a row */
+    gap: 60px;             /* Space between navigation boxes */
+    padding: 0;            /* Remove default padding */
+    list-style: none;      /* Remove bullet points */
+    justify-content: center; /* Center the nav items */
+}
+
+/* Individual navigation item box styling */
+nav li {
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+    padding: 15px 25px;           /* Space inside each box */
+    border: 1px solid #000;       /* Black border */
+    border-radius: 10px;          /* Rounded corners */
+    transition: transform 0.2s ease, background-color 0.2s ease; /* Smooth hover animation */
+}
+
+/* Hover effect for navigation boxes */
+nav li:hover {
+    background-color: #ddd;   /* Light gray on hover */
+    transform: scale(2.05);   /* Grow box slightly when hovered */
+}
+
+/* Link styling inside nav items */
+nav a {
+    text-decoration: none;  /* Remove underline */
+    color: black;           /* Set link text color to black */
+    font-weight: bold;      /* Bold text for emphasis */
+}

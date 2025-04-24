@@ -1,0 +1,34 @@
+body {
+    background-image: url('images/newwindow.jpg');
+    background-size: cover;              /* Cover the entire screen */
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;                       /* Ensure it covers full height */
+    width: 100vw;                        /* Ensure it covers full width */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white;                        /* Make all text white */
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    color: white;                        /* Ensure headers and paragraphs are white */
+}
+
+.return-home {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #843ce1;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.return-home:hover {
+    background-color: #6a2dbd;
+}

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Self-Assessment Quiz</title>
+  
+  <!-- Internal CSS styling -->
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 700px;
+      margin: auto;
+      padding: 20px;
+      background-color: rgba(118, 131, 180, 0.676);
+      position: relative;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    #result {
+      margin-top: 20px;
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
+    }
+
+    /* Return Home button styling */
+    .return-home {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #843ce1;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .return-home:hover {
+      background-color: #6a2dbd;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Page Header -->
+<h2>Self-Assessment Quiz</h2>
+
+<!-- Quiz Form -->
+<form id="quiz">
+  <!-- Question 1 -->
+  <div class="question">
+    <p>1. Who created the web?</p>
+    <label><input type="radio" name="q1" value="b"> Tim Berners-Lee</label><br>
+    <label><input type="radio" name="q1" value="a"> Van Newmen</label><br>
+    <label><input type="radio" name="q1" value="c"> Patrisha Bert</label>
+  </div>
+
+  <!-- Question 2 -->
+  <div class="question">
+    <p>2. What was the very first version of the web?</p>
+    <label><input type="radio" name="q2" value="c"> First Access</label><br>
+    <label><input type="radio" name="q2" value="a"> Transmission Control Protocol</label><br>
+    <label><input type="radio" name="q2" value="b"> Web Light</label>
+  </div>
+
+  <!-- Question 3 -->
+  <div class="question">
+    <p>3. Choose a key component that Lee created:</p>
+    <label><input type="radio" name="q3" value="b"> HTML</label><br>
+    <label><input type="radio" name="q3" value="a"> Java</label><br>
+    <label><input type="radio" name="q3" value="c"> C++</label>
+  </div>
+
+  <!-- Question 4 -->
+  <div class="question">
+    <p>4. What was the first web browser?</p>
+    <input type="text" name="q4" placeholder="worldwideweb">
+  </div>
+
+  <!-- Question 5 -->
+  <div class="question">
+    <p>5. Select all that apply: Which of the following are key web technologies?</p>
+    <label><input type="checkbox" name="q5" value="a"> HTML</label><br>
+    <label><input type="checkbox" name="q5" value="b"> CSS</label><br>
+    <label><input type="checkbox" name="q5" value="c"> HTTP</label><br>
+    <label><input type="checkbox" name="q5" value="d"> JavaScript</label>
+  </div>
+
+  <!-- Submit & Restart Buttons -->
+  <button type="button" onclick="submitQuiz()">Submit</button>
+  <button type="button" onclick="resetQuiz()">Restart</button>
+</form>
+
+<!-- Quiz result display area -->
+<div id="result"></div>
+
+<!-- Return to home button -->
+<a href="index.html" class="return-home">Return to Home</a>
+
+<!-- JavaScript for quiz logic -->
+<script>
+  function submitQuiz() {
+    // Define correct answers
+    const answers = {
+      q1: "b",
+      q2: "b",
+      q3: "b",
+      q4: "WorldWideWeb",
+      q5: ["a", "c"],
+    };
+
+    let score = 0;
+    const result = [];
+
+    // Check answers for questions 1 to 3
+    for (let i = 1; i <= 3; i++) {
+      const userAnswer = document.querySelector(`input[name="q${i}"]:checked`);
+      if (userAnswer) {
+        const correct = userAnswer.value === answers[`q${i}`];
+        if (correct) score++;
+        result.push(`Q${i}: ${correct ? "Correct" : "Incorrect"}`);
+      } else {
+        result.push(`Q${i}: No answer`);
+      }
+    }
+
+    // Check answer for question 4 (text input)
+    const q4 = document.querySelector('input[name="q4"]').value.trim().toLowerCase();
+    if (q4 === answers.q4.toLowerCase()) {
+      score++;
+      result.push("Q4: Correct");
+    } else {
+      result.push("Q4: Incorrect");
+    }
+
+    // Check answer for question 5 (checkboxes)
+    const selected = Array.from(document.querySelectorAll('input[name="q5"]:checked')).map(cb => cb.value);
+    const isCorrect = selected.length === answers.q5.length && selected.every(v => answers.q5.includes(v));
+    if (isCorrect) {
+      score++;
+      result.push("Q5: Correct");
+    } else {
+      result.push("Q5: Incorrect");
+    }
+
+    // Display score and result summary
+    const pass = score >= 4;
+    document.getElementById("result").innerHTML =
+      `<h3>Score: ${score}/5 - ${pass ? "Pass ✅" : "Fail ❌"}</h3><ul><li>${result.join("</li><li>")}</li></ul>`;
+  }
+
+  function resetQuiz() {
+    // Reset form and clear result
+    document.getElementById("quiz").reset();
+    document.getElementById("result").innerHTML = "";
+  }
+</script>
+
+</body>
+</html>
